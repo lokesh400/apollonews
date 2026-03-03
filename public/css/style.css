@@ -184,6 +184,7 @@ a { transition: var(--transition); text-decoration: none; color: inherit; }
 
 /* ── Article Cards ───────────────────────────────────────────── */
 .article-card {
+  position: relative; /* contain stretched-link ::after within the card */
   border-radius: var(--radius-lg) !important;
   border: 1px solid var(--border) !important;
   transition: var(--transition);
@@ -256,6 +257,8 @@ a { transition: var(--transition); text-decoration: none; color: inherit; }
 
 /* ── Ad Banner ───────────────────────────────────────────────── */
 .ad-banner {
+  position: relative;
+  z-index: 2; /* sit above stretched-link ::after overlay (z-index: 1) */
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--light);

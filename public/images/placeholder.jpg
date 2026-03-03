@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250">
+  <rect width="400" height="250" fill="#e9ecef"/>
+  <text x="50%" y="45%" font-size="48" text-anchor="middle" dominant-baseline="middle" fill="#adb5bd">📰</text>
+  <text x="50%" y="65%" font-size="14" text-anchor="middle" dominant-baseline="middle" fill="#6c757d">No Image Available</text>
+</svg>

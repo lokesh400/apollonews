@@ -1,0 +1,92 @@
+/* ════════════════════════════════════════════════════════════════
+   ADNEWS — Custom Stylesheet
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Root Variables ──────────────────────────────────────────── */
+:root {
+  --brand-yellow: #ffc107;
+  --brand-dark:   #1e2a38;
+  --text-body:    #333;
+  --card-radius:  10px;
+}
+
+/* ── Base ────────────────────────────────────────────────────── */
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--text-body);
+  background: #f8f9fa;
+}
+
+a { transition: color .15s; }
+
+/* ── Navbar ──────────────────────────────────────────────────── */
+.navbar-brand { letter-spacing: .5px; }
+.navbar .nav-link { font-size: .9rem; font-weight: 500; }
+.navbar .nav-link.active { color: var(--brand-yellow) !important; }
+
+/* ── Breaking news ticker ────────────────────────────────────── */
+.ticker-wrap { overflow: hidden; }
+.ticker {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 40s linear infinite;
+  font-size: .85rem;
+  font-weight: 500;
+}
+@keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.ticker:hover { animation-play-state: paused; }
+
+/* ── Cards ───────────────────────────────────────────────────── */
+.article-card {
+  border-radius: var(--card-radius) !important;
+  transition: transform .2s, box-shadow .2s;
+  overflow: hidden;
+}
+.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.1) !important;
+}
+.article-title { transition: color .15s; }
+.article-title:hover { color: var(--brand-yellow) !important; }
+
+/* ── Category heading ────────────────────────────────────────── */
+.category-heading { font-size: 1.2rem; }
+
+/* ── Article detail page ─────────────────────────────────────── */
+.article-body p, .blog-content p {
+  line-height: 1.85;
+  margin-bottom: 1.1rem;
+}
+.article-body img, .blog-content img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────── */
+.sidebar .card { border-radius: var(--card-radius) !important; }
+.sidebar .list-group-item { font-size: .875rem; }
+
+/* ── Ad Banner ───────────────────────────────────────────────── */
+.ad-banner { border-radius: 8px; }
+.ad-placeholder { min-height: 90px; }
+
+/* ── Pagination ──────────────────────────────────────────────── */
+.page-link { color: var(--brand-dark); }
+.page-item.active .page-link {
+  background-color: var(--brand-yellow);
+  border-color: var(--brand-yellow);
+  color: #000;
+}
+
+/* ── Footer ──────────────────────────────────────────────────── */
+.footer-link:hover { color: var(--brand-yellow) !important; }
+
+/* ── Responsive tweaks ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .ticker { animation-duration: 25s; }
+  .carousel-caption { display: none !important; }
+}

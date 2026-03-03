@@ -1,0 +1,64 @@
+<!-- ════ SIDEBAR ═════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+
+  <!-- Sidebar Ad -->
+  <%- include('ad-banner', { id: 'sidebar-ad', label: 'Sponsored' }) %>
+
+  <!-- Categories -->
+  <div class="card mb-3 border-0 shadow-sm">
+    <div class="card-header bg-warning fw-bold text-dark">
+      <i class="bi bi-grid me-1"></i> Categories
+    </div>
+    <div class="list-group list-group-flush">
+      <% categories.forEach(cat => { %>
+      <a href="/news/<%= cat.slug %>"
+         class="list-group-item list-group-item-action d-flex justify-content-between align-items-center
+                <%= currentPath.includes('/news/' + cat.slug) ? 'active' : '' %>">
+        <span><%= cat.icon %> <%= cat.label %></span>
+        <i class="bi bi-chevron-right small"></i>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+
+  <!-- Trending (passed from route) -->
+  <% if (typeof trending !== 'undefined' && trending.length) { %>
+  <div class="card mb-3 border-0 shadow-sm">
+    <div class="card-header bg-danger text-white fw-bold">
+      <i class="bi bi-fire me-1"></i> Trending
+    </div>
+    <div class="list-group list-group-flush">
+      <% trending.forEach((art, i) => { %>
+      <a href="/news/<%= art.category %>/<%= art.slug %>"
+         class="list-group-item list-group-item-action py-2">
+        <div class="d-flex gap-2">
+          <span class="badge bg-danger rounded-pill"><%= i + 1 %></span>
+          <span class="small fw-semibold lh-sm"><%= art.title.substring(0, 70) %>...</span>
+        </div>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+  <% } %>
+
+  <!-- Mid Sidebar Ad -->
+  <%- include('ad-banner', { id: 'sidebar-mid-ad', label: 'Advertisement' }) %>
+
+  <!-- Latest Blog Posts -->
+  <% if (typeof latestBlogs !== 'undefined' && latestBlogs.length) { %>
+  <div class="card mb-3 border-0 shadow-sm">
+    <div class="card-header bg-primary text-white fw-bold">
+      <i class="bi bi-pencil-square me-1"></i> Latest from Blog
+    </div>
+    <div class="list-group list-group-flush">
+      <% latestBlogs.forEach(b => { %>
+      <a href="/blog/<%= b.slug %>" class="list-group-item list-group-item-action py-2">
+        <div class="small fw-semibold lh-sm"><%= b.title.substring(0, 65) %>...</div>
+        <div class="text-muted" style="font-size:11px;"><%= new Date(b.createdAt).toDateString() %></div>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+  <% } %>
+
+</aside>

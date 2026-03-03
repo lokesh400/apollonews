@@ -1,0 +1,98 @@
+<%- include('partials/header') %>
+
+<div class="row g-4">
+  <div class="col-lg-9">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/news/<%= article.category %>"><%= article.category %></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Article</li>
+      </ol>
+    </nav>
+
+    <article class="article-detail">
+      <!-- Category badge -->
+      <span class="badge bg-warning text-dark mb-2 text-uppercase"><%= article.category %></span>
+
+      <h1 class="fw-bold lh-sm mb-3"><%= article.title %></h1>
+
+      <div class="d-flex flex-wrap gap-3 text-muted small mb-3 pb-3 border-bottom">
+        <span><i class="bi bi-person me-1"></i><%= article.author || 'Unknown' %></span>
+        <span><i class="bi bi-building me-1"></i><%= article.source %></span>
+        <span><i class="bi bi-calendar me-1"></i><%= new Date(article.publishedAt).toDateString() %></span>
+        <span><i class="bi bi-eye me-1"></i><%= article.views %> views</span>
+      </div>
+
+      <!-- Featured Image -->
+      <% if (article.urlToImage) { %>
+      <img src="<%= article.urlToImage %>" alt="<%= article.title %>"
+           class="img-fluid rounded shadow-sm mb-4 w-100"
+           style="max-height:450px; object-fit:cover;"
+           onerror="this.src='/images/placeholder.jpg'">
+      <% } %>
+
+      <!-- Top Ad (before content) -->
+      <%- include('partials/ad-banner', { id: 'article-top-ad', label: 'Advertisement' }) %>
+
+      <!-- Article Content -->
+      <div class="article-body fs-6 lh-lg">
+        <p class="lead fw-semibold"><%= article.description %></p>
+        <% if (article.content && article.content !== article.description) { %>
+        <p><%= article.content.replace(/\[\+\d+ chars\]/, '') %></p>
+        <% } %>
+        <% if (article.url) { %>
+        <div class="alert alert-light border mt-4">
+          <i class="bi bi-link-45deg me-1"></i>
+          Read the full article at
+          <a href="<%= article.url %>" target="_blank" rel="noopener noreferrer" class="fw-semibold">
+            <%= article.source %>
+          </a>
+        </div>
+        <% } %>
+      </div>
+
+      <!-- Mid Ad -->
+      <%- include('partials/ad-banner', { id: 'article-mid-ad', label: 'Advertisement' }) %>
+
+      <!-- Share Buttons -->
+      <div class="d-flex gap-2 mt-4 mb-4 flex-wrap">
+        <span class="fw-semibold align-self-center">Share:</span>
+        <a href="https://twitter.com/intent/tweet?url=<%= encodeURIComponent(siteUrl + '/news/' + article.category + '/' + article.slug) %>&text=<%= encodeURIComponent(article.title) %>"
+           target="_blank" class="btn btn-sm btn-outline-dark">
+          <i class="bi bi-twitter-x me-1"></i>Twitter
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=<%= encodeURIComponent(siteUrl + '/news/' + article.category + '/' + article.slug) %>"
+           target="_blank" class="btn btn-sm btn-outline-primary">
+          <i class="bi bi-facebook me-1"></i>Facebook
+        </a>
+        <a href="https://api.whatsapp.com/send?text=<%= encodeURIComponent(article.title + ' ' + siteUrl + '/news/' + article.category + '/' + article.slug) %>"
+           target="_blank" class="btn btn-sm btn-outline-success">
+          <i class="bi bi-whatsapp me-1"></i>WhatsApp
+        </a>
+      </div>
+    </article>
+
+    <!-- Related Articles -->
+    <% if (related && related.length) { %>
+    <h5 class="fw-bold border-start border-warning border-4 ps-2 mb-3">Related Articles</h5>
+    <div class="row g-3 mb-4">
+      <% related.forEach(art => { %>
+      <div class="col-sm-6 col-md-3">
+        <%- include('partials/article-card', { article: art }) %>
+      </div>
+      <% }) %>
+    </div>
+    <% } %>
+
+    <!-- Bottom Ad -->
+    <%- include('partials/ad-banner', { id: 'article-bottom-ad', label: 'Advertisement' }) %>
+  </div>
+
+  <div class="col-lg-3">
+    <%- include('partials/sidebar', { trending: [], latestBlogs: [] }) %>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

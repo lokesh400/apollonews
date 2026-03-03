@@ -1,0 +1,46 @@
+  </div><!-- /container -->
+</div><!-- /container-fluid -->
+
+<!-- ══ Footer ════════════════════════════════════════════════════════════════ -->
+<footer class="bg-dark text-light mt-5 py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <h5 class="fw-bold text-warning"><i class="bi bi-newspaper me-1"></i><%= siteName %></h5>
+        <p class="text-muted small"><%= siteDesc %></p>
+      </div>
+      <div class="col-md-4">
+        <h6 class="text-uppercase text-warning fw-bold">Categories</h6>
+        <ul class="list-unstyled">
+          <% categories.forEach(cat => { %>
+          <li><a href="/news/<%= cat.slug %>" class="text-muted text-decoration-none footer-link">
+            <%= cat.icon %> <%= cat.label %>
+          </a></li>
+          <% }) %>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h6 class="text-uppercase text-warning fw-bold">Quick Links</h6>
+        <ul class="list-unstyled">
+          <li><a href="/" class="text-muted text-decoration-none footer-link"><i class="bi bi-house me-1"></i>Home</a></li>
+          <li><a href="/blog" class="text-muted text-decoration-none footer-link"><i class="bi bi-pencil me-1"></i>Blog</a></li>
+          <li><a href="/search" class="text-muted text-decoration-none footer-link"><i class="bi bi-search me-1"></i>Search</a></li>
+          <li><a href="/admin" class="text-muted text-decoration-none footer-link"><i class="bi bi-shield-lock me-1"></i>Admin</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="border-secondary mt-3">
+    <div class="text-center text-muted small">
+      &copy; <%= new Date().getFullYear() %> <%= siteName %> &mdash; All rights reserved.
+      Powered by <strong>Node.js</strong> &amp; <strong>MongoDB</strong>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ Bottom Ad Banner ════════════════════════════════════════════════════════ -->
+<%- include('ad-banner', { id: 'bottom-banner', label: 'Advertisement' }) %>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

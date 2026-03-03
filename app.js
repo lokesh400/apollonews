@@ -29,7 +29,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(helmet({
   contentSecurityPolicy: false,  // allow inline scripts / adsense
 }));
-app.use(morgan('dev'));
+// Skip logging for static file requests (images, css, js) to keep terminal clean
+app.use(morgan('dev', {
+  skip: (req) => req.url.startsWith('/images/') || req.url.startsWith('/css/') || req.url.startsWith('/js/')
+}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride('_method'));

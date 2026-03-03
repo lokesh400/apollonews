@@ -6,11 +6,13 @@
   <title>Admin Login | <%= siteName %></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/images/logo.png">
 </head>
 <body class="bg-dark d-flex align-items-center justify-content-center" style="min-height:100vh;">
   <div class="card shadow p-4" style="width:100%; max-width:380px;">
     <div class="text-center mb-4">
-      <h3 class="fw-bold"><i class="bi bi-shield-lock text-warning me-1"></i><%= siteName %></h3>
+      <img src="/images/logo.png" alt="<%= siteName %>" style="height:56px;width:auto;object-fit:contain;margin-bottom:8px;">
+      <h3 class="fw-bold"><%= siteName %></h3>
       <p class="text-muted">Admin Login</p>
     </div>
     <% if (error) { %>

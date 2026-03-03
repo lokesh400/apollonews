@@ -11,9 +11,6 @@
       </div>
     </div>
 
-    <!-- Top Ad -->
-    <%- include('partials/ad-banner', { id: 'cat-ad-top', label: 'Advertisement' }) %>
-
     <!-- Articles grid -->
     <% if (articles.length) { %>
     <div class="row g-3">
@@ -21,12 +18,7 @@
       <div class="col-sm-6 col-md-4">
         <%- include('partials/article-card', { article }) %>
       </div>
-      <!-- In-feed ad every 6 articles -->
-      <% if ((idx + 1) % 6 === 0 && idx < articles.length - 1) { %>
-      <div class="col-12">
-        <%- include('partials/ad-banner', { id: 'infeed-ad-' + idx, label: 'Advertisement' }) %>
-      </div>
-      <% } %>
+
       <% }) %>
     </div>
 

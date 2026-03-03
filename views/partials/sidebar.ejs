@@ -1,39 +1,35 @@
 <!-- ════ SIDEBAR ═════════════════════════════════════════════════════════════ -->
-<aside class="sidebar">
-
-  <!-- Sidebar Ad -->
-  <%- include('ad-banner', { id: 'sidebar-ad', label: 'Sponsored' }) %>
+<aside>
 
   <!-- Categories -->
-  <div class="card mb-3 border-0 shadow-sm">
-    <div class="card-header bg-warning fw-bold text-dark">
-      <i class="bi bi-grid me-1"></i> Categories
+  <div class="sidebar-widget">
+    <div class="sidebar-widget-header navy">
+      <i class="bi bi-grid-fill"></i> Browse Categories
     </div>
     <div class="list-group list-group-flush">
       <% categories.forEach(cat => { %>
       <a href="/news/<%= cat.slug %>"
-         class="list-group-item list-group-item-action d-flex justify-content-between align-items-center
-                <%= currentPath.includes('/news/' + cat.slug) ? 'active' : '' %>">
-        <span><%= cat.icon %> <%= cat.label %></span>
-        <i class="bi bi-chevron-right small"></i>
+         class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-2">
+        <span style="font-size:.85rem;"><%= cat.icon %> <%= cat.label %></span>
+        <i class="bi bi-chevron-right" style="font-size:.7rem;color:var(--primary);"></i>
       </a>
       <% }) %>
     </div>
   </div>
 
-  <!-- Trending (passed from route) -->
+  <!-- Trending -->
   <% if (typeof trending !== 'undefined' && trending.length) { %>
-  <div class="card mb-3 border-0 shadow-sm">
-    <div class="card-header bg-danger text-white fw-bold">
-      <i class="bi bi-fire me-1"></i> Trending
+  <div class="sidebar-widget">
+    <div class="sidebar-widget-header red">
+      <i class="bi bi-fire"></i> Trending Now
     </div>
     <div class="list-group list-group-flush">
       <% trending.forEach((art, i) => { %>
       <a href="/news/<%= art.category %>/<%= art.slug %>"
          class="list-group-item list-group-item-action py-2">
-        <div class="d-flex gap-2">
-          <span class="badge bg-danger rounded-pill"><%= i + 1 %></span>
-          <span class="small fw-semibold lh-sm"><%= art.title.substring(0, 70) %>...</span>
+        <div class="d-flex gap-2 align-items-start">
+          <span class="trend-num mt-1"><%= i + 1 %></span>
+          <span style="font-size:.8rem;font-weight:600;line-height:1.4;"><%= art.title.substring(0, 72) %>…</span>
         </div>
       </a>
       <% }) %>
@@ -41,24 +37,28 @@
   </div>
   <% } %>
 
-  <!-- Mid Sidebar Ad -->
-  <%- include('ad-banner', { id: 'sidebar-mid-ad', label: 'Advertisement' }) %>
-
   <!-- Latest Blog Posts -->
   <% if (typeof latestBlogs !== 'undefined' && latestBlogs.length) { %>
-  <div class="card mb-3 border-0 shadow-sm">
-    <div class="card-header bg-primary text-white fw-bold">
-      <i class="bi bi-pencil-square me-1"></i> Latest from Blog
+  <div class="sidebar-widget">
+    <div class="sidebar-widget-header teal">
+      <i class="bi bi-pencil-square"></i> Latest from Blog
     </div>
     <div class="list-group list-group-flush">
       <% latestBlogs.forEach(b => { %>
       <a href="/blog/<%= b.slug %>" class="list-group-item list-group-item-action py-2">
-        <div class="small fw-semibold lh-sm"><%= b.title.substring(0, 65) %>...</div>
-        <div class="text-muted" style="font-size:11px;"><%= new Date(b.createdAt).toDateString() %></div>
+        <div style="font-size:.82rem;font-weight:600;line-height:1.4;"><%= b.title.substring(0, 62) %>…</div>
+        <div class="mt-1" style="font-size:.72rem;color:var(--text-light);"><i class="bi bi-calendar3 me-1"></i><%= new Date(b.createdAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) %></div>
       </a>
       <% }) %>
     </div>
   </div>
   <% } %>
+
+  <!-- Newsletter CTA -->
+  <div class="sidebar-widget p-3" style="background:var(--gradient);">
+    <h6 class="text-white fw-bold mb-1"><i class="bi bi-bell me-1"></i>Stay Updated!</h6>
+    <p style="font-size:.78rem;color:rgba(255,255,255,.85);margin-bottom:12px;">Get the latest news delivered to your feed. Updating every 10 minutes.</p>
+    <a href="/" class="btn btn-sm btn-light fw-bold w-100" style="border-radius:50px;">Browse All News</a>
+  </div>
 
 </aside>

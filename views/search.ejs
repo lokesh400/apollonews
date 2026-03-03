@@ -9,8 +9,6 @@
       <% if (q) { %>Showing results for <strong>"<%= q %>"</strong><% } else { %>Enter a keyword above<% } %>
     </p>
 
-    <%- include('partials/ad-banner', { id: 'search-ad', label: 'Advertisement' }) %>
-
     <% if (articles.length) { %>
     <div class="row g-3">
       <% articles.forEach(article => { %>

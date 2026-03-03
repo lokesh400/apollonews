@@ -6,8 +6,6 @@
       <i class="bi bi-pencil-square me-1"></i> Blog
     </h2>
 
-    <%- include('../partials/ad-banner', { id: 'blog-top-ad', label: 'Advertisement' }) %>
-
     <% if (blogs.length) { %>
     <div class="row g-4">
       <% blogs.forEach((blog, idx) => { %>
@@ -35,11 +33,7 @@
         </div>
       </div>
 
-      <% if ((idx + 1) % 4 === 0 && idx < blogs.length - 1) { %>
-      <div class="col-12">
-        <%- include('../partials/ad-banner', { id: 'blog-infeed-' + idx, label: 'Advertisement' }) %>
-      </div>
-      <% } %>
+
       <% }) %>
     </div>
 

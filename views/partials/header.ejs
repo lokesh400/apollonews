@@ -5,10 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %> | <%= siteName %></title>
   <meta name="description" content="<%= typeof article !== 'undefined' ? article.description : siteDesc %>">
+  <meta name="robots" content="index, follow">
   <meta property="og:title" content="<%= title %> | <%= siteName %>">
+  <meta property="og:description" content="<%= typeof article !== 'undefined' ? article.description : siteDesc %>">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="<%= siteUrl + currentPath %>">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="admolo-verification" content="DTP5Q39YZTGG7RMX71WKUAEYPJYQSATS">
+  <meta name="google-adsense-account" content="ca-pub-9967030840996133">
+  <link rel="canonical" href="<%= siteUrl + currentPath %>">
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <link rel="shortcut icon" type="image/png" href="/images/logo.png">
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
@@ -17,62 +29,86 @@
   <link href="/css/style.css" rel="stylesheet">
 
   <!--
-    ═══════════════════════════════════════════════════════
-    GOOGLE ADSENSE — Replace with your publisher ID
-    Uncomment the lines below once you have your AdSense account approved.
-    ═══════════════════════════════════════════════════════
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX"
-         crossorigin="anonymous"></script>
+    ══════════════════════════════════════════════════════
+    GOOGLE ADSENSE — paste your script tag here once approved
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    ══════════════════════════════════════════════════════
   -->
 </head>
 <body>
 
-<!-- ══ Top Ad Banner ══════════════════════════════════════════════════════════ -->
-<%- include('ad-banner', { id: 'top-banner', label: 'Advertisement' }) %>
+<!-- ══ Top Bar ═══════════════════════════════════════════════════════════════ -->
+<div class="topbar d-none d-md-block">
+  <div class="container d-flex justify-content-between align-items-center">
+    <span class="topbar-date">
+      <i class="bi bi-calendar3 me-1"></i>
+      <%= new Date().toLocaleDateString('en-IN', { weekday:'long', year:'numeric', month:'long', day:'numeric' }) %>
+    </span>
+    <div class="d-flex align-items-center gap-3">
+      <a href="/privacy-policy"><i class="bi bi-shield-check me-1"></i>Privacy</a>
+      <a href="/terms"><i class="bi bi-file-text me-1"></i>Terms</a>
+      <a href="/advertise"><i class="bi bi-bullseye me-1"></i>Advertise</a>
+      <a href="/contact"><i class="bi bi-envelope me-1"></i>Contact</a>
+    </div>
+  </div>
+</div>
 
 <!-- ══ Navbar ════════════════════════════════════════════════════════════════ -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+<nav class="site-navbar navbar navbar-expand-lg">
   <div class="container">
-    <a class="navbar-brand fw-bold fs-4" href="/">
-      <i class="bi bi-newspaper text-warning me-1"></i><%= siteName %>
+
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+      <img src="/images/logo.png" alt="<%= siteName %>" style="height:52px;width:auto;object-fit:contain;">
+      <span style="font-size:1.5rem;font-weight:800;letter-spacing:-.5px;line-height:1;color:var(--secondary);">Apollo<span style="color:var(--primary);">News</span></span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link <%= currentPath === '/' ? 'active' : '' %>" href="/">Home</a></li>
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item">
+          <a class="nav-link <%= currentPath === '/' ? 'active' : '' %>" href="/">
+            <i class="bi bi-house me-1"></i>Home
+          </a>
+        </li>
         <% categories.forEach(cat => { %>
         <li class="nav-item">
-          <a class="nav-link <%= currentPath.includes('/news/' + cat.slug) ? 'active' : '' %>" href="/news/<%= cat.slug %>">
+          <a class="nav-link <%= currentPath === '/news/' + cat.slug ? 'active' : '' %>" href="/news/<%= cat.slug %>">
             <%= cat.icon %> <%= cat.label %>
           </a>
         </li>
         <% }) %>
-        <li class="nav-item"><a class="nav-link <%= currentPath.startsWith('/blog') ? 'active' : '' %>" href="/blog">Blog</a></li>
+        <li class="nav-item">
+          <a class="nav-link <%= currentPath.startsWith('/blog') ? 'active' : '' %>" href="/blog">
+            <i class="bi bi-pencil-square me-1"></i>Blog
+          </a>
+        </li>
       </ul>
+
       <!-- Search -->
-      <form class="d-flex" action="/search" method="GET">
-        <input class="form-control me-2" type="search" name="q" placeholder="Search news..." aria-label="Search"
+      <form class="d-flex align-items-center gap-2" action="/search" method="GET">
+        <input class="search-input-nav" type="search" name="q" placeholder="Search news…"
                value="<%= typeof q !== 'undefined' ? q : '' %>">
-        <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+        <button class="btn-nav-search" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
       </form>
     </div>
   </div>
 </nav>
 
 <!-- ══ Breaking News Ticker ═══════════════════════════════════════════════════ -->
-<div class="bg-danger text-white py-1 overflow-hidden">
+<div class="ticker-bar">
   <div class="container d-flex align-items-center gap-3">
-    <span class="badge bg-white text-danger fw-bold text-uppercase flex-shrink-0">Breaking</span>
-    <div id="tickerWrap" class="ticker-wrap flex-grow-1 overflow-hidden">
-      <div class="ticker" id="ticker">
-        <!-- Filled via JS from /search?q= -->
-        Loading headlines&hellip;
-      </div>
+    <span class="ticker-label">Breaking</span>
+    <div class="ticker-wrap">
+      <div class="ticker" id="ticker">Loading latest headlines&hellip;</div>
     </div>
   </div>
 </div>
 
-<div class="container-fluid px-0 py-3">
+<div class="page-wrapper">
   <div class="container">

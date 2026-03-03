@@ -1,44 +1,132 @@
   </div><!-- /container -->
-</div><!-- /container-fluid -->
+</div><!-- /page-wrapper -->
 
 <!-- ══ Footer ════════════════════════════════════════════════════════════════ -->
-<footer class="bg-dark text-light mt-5 py-5">
-  <div class="container">
+<footer class="site-footer" style="width: 100%;">
+  <div class="container pt-5 pb-4">
     <div class="row g-4">
-      <div class="col-md-4">
-        <h5 class="fw-bold text-warning"><i class="bi bi-newspaper me-1"></i><%= siteName %></h5>
-        <p class="text-muted small"><%= siteDesc %></p>
+
+      <!-- Brand Column -->
+      <div class="col-lg-4 col-md-6">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <img src="/images/logo.png" alt="<%= siteName %>" style="height:42px;width:auto;object-fit:contain;filter:brightness(0) invert(1);">
+        </div>
+        <p style="font-size:.875rem;line-height:1.8;color:rgba(255,255,255,.6);margin-bottom:18px;">
+          Your trusted source for the latest news across technology, business, sports, entertainment, health &amp; science. Updated automatically every 10 minutes.
+        </p>
+        <div class="footer-social d-flex gap-2">
+          <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" title="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" title="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="#" title="Telegram"><i class="bi bi-telegram"></i></a>
+        </div>
       </div>
-      <div class="col-md-4">
-        <h6 class="text-uppercase text-warning fw-bold">Categories</h6>
+
+      <!-- News Categories -->
+      <div class="col-lg-2 col-md-3 col-6">
+        <h6>News Categories</h6>
         <ul class="list-unstyled">
           <% categories.forEach(cat => { %>
-          <li><a href="/news/<%= cat.slug %>" class="text-muted text-decoration-none footer-link">
-            <%= cat.icon %> <%= cat.label %>
-          </a></li>
+          <li class="mb-2">
+            <a href="/news/<%= cat.slug %>"><i class="bi bi-chevron-right me-1" style="font-size:.65rem;color:var(--primary);"></i><%= cat.label %></a>
+          </li>
           <% }) %>
         </ul>
       </div>
-      <div class="col-md-4">
-        <h6 class="text-uppercase text-warning fw-bold">Quick Links</h6>
+
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-3 col-6">
+        <h6>Quick Links</h6>
         <ul class="list-unstyled">
-          <li><a href="/" class="text-muted text-decoration-none footer-link"><i class="bi bi-house me-1"></i>Home</a></li>
-          <li><a href="/blog" class="text-muted text-decoration-none footer-link"><i class="bi bi-pencil me-1"></i>Blog</a></li>
-          <li><a href="/search" class="text-muted text-decoration-none footer-link"><i class="bi bi-search me-1"></i>Search</a></li>
-          <li><a href="/admin" class="text-muted text-decoration-none footer-link"><i class="bi bi-shield-lock me-1"></i>Admin</a></li>
+          <li class="mb-2"><a href="/"><i class="bi bi-house me-1" style="color:var(--primary);"></i>Home</a></li>
+          <li class="mb-2"><a href="/blog"><i class="bi bi-pencil-square me-1" style="color:var(--primary);"></i>Blog</a></li>
+          <li class="mb-2"><a href="/search"><i class="bi bi-search me-1" style="color:var(--primary);"></i>Search</a></li>
+          <li class="mb-2"><a href="/advertise"><i class="bi bi-bullseye me-1" style="color:var(--primary);"></i>Advertise</a></li>
+          <li class="mb-2"><a href="/contact"><i class="bi bi-envelope me-1" style="color:var(--primary);"></i>Contact Us</a></li>
+          <li class="mb-2"><a href="/sitemap"><i class="bi bi-map me-1" style="color:var(--primary);"></i>Sitemap</a></li>
         </ul>
       </div>
+
+      <!-- Legal -->
+      <div class="col-lg-2 col-md-6 col-6">
+        <h6>Legal</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="/privacy-policy"><i class="bi bi-shield-check me-1" style="color:var(--primary);"></i>Privacy Policy</a></li>
+          <li class="mb-2"><a href="/terms"><i class="bi bi-file-text me-1" style="color:var(--primary);"></i>Terms of Service</a></li>
+          <li class="mb-2"><a href="/disclaimer"><i class="bi bi-exclamation-circle me-1" style="color:var(--primary);"></i>Disclaimer</a></li>
+          <li class="mb-2"><a href="/dmca"><i class="bi bi-c-circle me-1" style="color:var(--primary);"></i>DMCA Policy</a></li>
+          <li class="mb-2"><a href="/cookie-policy"><i class="bi bi-cookie me-1" style="color:var(--primary);"></i>Cookie Policy</a></li>
+          <li class="mb-2"><a href="/copyright"><i class="bi bi-c-square me-1" style="color:var(--primary);"></i>Copyright Notice</a></li>
+        </ul>
+      </div>
+
+      <!-- About -->
+      <div class="col-lg-2 col-md-6 col-6">
+        <h6>About</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="/about"><i class="bi bi-info-circle me-1" style="color:var(--primary);"></i>About Us</a></li>
+          <li class="mb-2"><a href="/editorial-policy"><i class="bi bi-journal-check me-1" style="color:var(--primary);"></i>Editorial Policy</a></li>
+          <li class="mb-2"><a href="/fact-check"><i class="bi bi-patch-check me-1" style="color:var(--primary);"></i>Fact Check Policy</a></li>
+          <li class="mb-2"><a href="/corrections"><i class="bi bi-pencil me-1" style="color:var(--primary);"></i>Corrections Policy</a></li>
+        </ul>
+      </div>
+
     </div>
-    <hr class="border-secondary mt-3">
-    <div class="text-center text-muted small">
-      &copy; <%= new Date().getFullYear() %> <%= siteName %> &mdash; All rights reserved.
-      Powered by <strong>Node.js</strong> &amp; <strong>MongoDB</strong>
+
+    <!-- Trust Badges -->
+    <div class="d-flex flex-wrap gap-3 align-items-center justify-content-center mt-5 pt-3 border-top" style="border-color:rgba(255,255,255,.08)!important;">
+      <span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:6px 14px;border-radius:50px;font-size:.75rem;color:rgba(255,255,255,.6);">
+        <i class="bi bi-shield-fill-check me-1" style="color:var(--accent2);"></i>Verified News Source
+      </span>
+      <span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:6px 14px;border-radius:50px;font-size:.75rem;color:rgba(255,255,255,.6);">
+        <i class="bi bi-clock-history me-1" style="color:var(--accent);"></i>Updated Every 10 Minutes
+      </span>
+      <span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:6px 14px;border-radius:50px;font-size:.75rem;color:rgba(255,255,255,.6);">
+        <i class="bi bi-lock-fill me-1" style="color:var(--primary-light);"></i>SSL Secured
+      </span>
+      <span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:6px 14px;border-radius:50px;font-size:.75rem;color:rgba(255,255,255,.6);">
+        <i class="bi bi-c-circle me-1" style="color:var(--primary-light);"></i>DMCA Protected
+      </span>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>&copy; <%= new Date().getFullYear() %> <strong style="color:rgba(255,255,255,.7);"><%= siteName %></strong>. All rights reserved. All content is aggregated from licensed third-party news APIs.</span>
+      <div class="d-flex flex-wrap gap-3">
+        <a href="/privacy-policy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/disclaimer">Disclaimer</a>
+        <a href="/dmca">DMCA</a>
+        <a href="/cookie-policy">Cookies</a>
+      </div>
     </div>
   </div>
 </footer>
 
-<!-- ══ Bottom Ad Banner ════════════════════════════════════════════════════════ -->
-<%- include('ad-banner', { id: 'bottom-banner', label: 'Advertisement' }) %>
+<!-- ── Cookie Consent Banner ──────────────────────────────────────────────── -->
+<div id="cookieBanner" class="position-fixed bottom-0 start-0 end-0 p-3"
+     style="background:var(--secondary-dark);z-index:9999;display:none;border-top:2px solid var(--primary);">
+  <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+    <p class="mb-0 text-white" style="font-size:.85rem;">
+      <i class="bi bi-cookie me-2" style="color:var(--accent);font-size:1.1rem;"></i>
+      We use cookies to improve your experience and show personalised ads. By using this site you agree to our
+      <a href="/cookie-policy" class="text-warning">Cookie Policy</a> and
+      <a href="/privacy-policy" class="text-warning">Privacy Policy</a>.
+    </p>
+    <div class="d-flex gap-2">
+      <button onclick="acceptCookies()" class="btn btn-sm btn-warning fw-bold px-3">Accept All</button>
+      <button onclick="declineCookies()" class="btn btn-sm btn-outline-light px-3">Decline</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Back to Top ────────────────────────────────────────────────────────── -->
+<button class="back-to-top" id="backToTop" title="Back to top">
+  <i class="bi bi-chevron-up"></i>
+</button>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/js/main.js"></script>

@@ -41,9 +41,6 @@
     </div>
     <% } %>
 
-    <!-- Top Ad -->
-    <%- include('partials/ad-banner', { id: 'home-ad-1', label: 'Advertisement' }) %>
-
     <!-- Category Sections -->
     <% categories.forEach(cat => { %>
     <% if (categoryNews[cat.slug] && categoryNews[cat.slug].length) { %>

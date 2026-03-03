@@ -33,9 +33,6 @@
            onerror="this.src='/images/placeholder.jpg'">
       <% } %>
 
-      <!-- Top Ad (before content) -->
-      <%- include('partials/ad-banner', { id: 'article-top-ad', label: 'Advertisement' }) %>
-
       <!-- Article Content -->
       <div class="article-body fs-6 lh-lg">
         <p class="lead fw-semibold"><%= article.description %></p>
@@ -52,9 +49,6 @@
         </div>
         <% } %>
       </div>
-
-      <!-- Mid Ad -->
-      <%- include('partials/ad-banner', { id: 'article-mid-ad', label: 'Advertisement' }) %>
 
       <!-- Share Buttons -->
       <div class="d-flex gap-2 mt-4 mb-4 flex-wrap">
@@ -86,8 +80,6 @@
     </div>
     <% } %>
 
-    <!-- Bottom Ad -->
-    <%- include('partials/ad-banner', { id: 'article-bottom-ad', label: 'Advertisement' }) %>
   </div>
 
   <div class="col-lg-3">

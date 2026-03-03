@@ -477,3 +477,15 @@ a { transition: var(--transition); text-decoration: none; color: inherit; }
 @media (max-width: 576px) {
   .section-heading { font-size: 1.1rem; }
 }
+
+/* ── Legal / Info Pages ──────────────────────────────────────── */
+.legal-content h4        { color: var(--secondary); border-left: 4px solid var(--primary); padding-left: 12px; }
+.legal-content h5        { color: var(--secondary-dark); }
+.legal-content p         { line-height: 1.85; color: #444; }
+.legal-content ul,
+.legal-content ol        { line-height: 2; color: #444; padding-left: 1.4rem; }
+.legal-content a         { color: var(--primary); text-decoration: none; font-weight: 500; }
+.legal-content a:hover   { text-decoration: underline; }
+.legal-content table td,
+.legal-content table th  { font-size: .85rem; vertical-align: middle; }
+

@@ -1,25 +1,32 @@
 require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const session = require('express-session');
+const express    = require('express');
+const mongoose   = require('mongoose');
+const session    = require('express-session');
 const MongoStore = require('connect-mongo');
-const morgan = require('morgan');
-const helmet = require('helmet');
+const passport   = require('passport');
+const morgan     = require('morgan');
+const helmet     = require('helmet');
 const methodOverride = require('method-override');
-const path = require('path');
-const cron = require('node-cron');
+const path       = require('path');
+const cron       = require('node-cron');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ─── Database ────────────────────────────────────────────────────────────────
 mongoose.connect(process.env.MONGODB_URI)
-  .then(() => {
+  .then(async () => {
     console.log('✅  MongoDB connected');
-    // Seed admin on first run
-    require('./services/adminSeed')();
+    await require('./services/adminSeed')();
+    await require('./services/blogSeed')();
   })
   .catch(err => console.error('MongoDB error:', err));
+
+// ─── Passport strategy ───────────────────────────────────────────────────────
+const Admin = require('./models/Admin');
+passport.use(Admin.createStrategy());
+passport.serializeUser(Admin.serializeUser());
+passport.deserializeUser(Admin.deserializeUser());
 
 // ─── View Engine ─────────────────────────────────────────────────────────────
 app.set('view engine', 'ejs');
@@ -33,6 +40,7 @@ app.use(helmet({
 app.use(morgan('dev', {
   skip: (req) => req.url.startsWith('/images/') || req.url.startsWith('/css/') || req.url.startsWith('/js/')
 }));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride('_method'));
@@ -47,12 +55,16 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 * 24 }  // 1 day
 }));
 
+// Passport (must come after sessions)
+app.use(passport.initialize());
+app.use(passport.session());
+
 // ─── Locals available in all views ───────────────────────────────────────────
 app.use((req, res, next) => {
-  res.locals.siteName    = process.env.SITE_NAME || 'AdNews';
+  res.locals.siteName    = process.env.SITE_NAME || 'ApolloNews';
   res.locals.siteUrl     = process.env.SITE_URL  || 'http://localhost:3000';
   res.locals.siteDesc    = process.env.SITE_DESCRIPTION || 'Latest News & Blogs';
-  res.locals.isAdmin     = req.session && req.session.isAdmin;
+  res.locals.isAdmin     = req.isAuthenticated();
   res.locals.currentPath = req.path;
   res.locals.categories  = require('./config/categories');
   next();
@@ -63,6 +75,7 @@ app.use('/',        require('./routes/index'));
 app.use('/news',    require('./routes/news'));
 app.use('/blog',    require('./routes/blog'));
 app.use('/admin',   require('./routes/admin'));
+app.use('/',        require('./routes/pages'));
 
 // 404 handler
 app.use((req, res) => {

@@ -1,0 +1,58 @@
+<%- include('../partials/header') %>
+
+<div class="row g-4">
+  <div class="col-lg-8 mx-auto">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/">Home</a></li><li class="breadcrumb-item active">Disclaimer</li></ol>
+    </nav>
+
+    <div class="card border-0 shadow-sm p-4 p-md-5">
+      <div class="d-flex align-items-center gap-3 mb-4">
+        <span style="background:var(--gradient);width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="bi bi-exclamation-triangle-fill text-white fs-5"></i>
+        </span>
+        <div>
+          <h1 class="h3 fw-bold mb-0">Disclaimer</h1>
+          <p class="text-muted small mb-0">Last updated: January 2025</p>
+        </div>
+      </div>
+
+      <div class="legal-content">
+        <p class="lead">The information available on ApolloNews (<strong><%= siteUrl %></strong>) is provided for general informational and educational purposes only. It is not intended to constitute professional advice of any kind.</p>
+
+        <h4 class="fw-bold mt-4">1. News Aggregation Disclaimer</h4>
+        <p>ApolloNews aggregates news content from licensed third-party API providers. While we take reasonable care to source content from reputable publishers, <strong>ApolloNews makes no warranties as to the accuracy, completeness, timeliness, or fitness for any particular purpose of aggregated content</strong>.</p>
+        <p>All aggregated articles link to their original source. ApolloNews does not independently verify every statement made in third-party articles. Readers are encouraged to read original source material and consult primary sources before making decisions based on news content.</p>
+
+        <h4 class="fw-bold mt-4">2. Not Professional Advice</h4>
+        <p>Nothing on this Site constitutes or should be construed as:</p>
+        <ul>
+          <li><strong>Medical or health advice</strong> — Always consult a qualified medical professional for health decisions.</li>
+          <li><strong>Legal advice</strong> — Nothing here is a substitute for advice from a qualified lawyer.</li>
+          <li><strong>Financial or investment advice</strong> — Content related to markets, stocks, or personal finance is for informational purposes only and does not constitute a recommendation to invest.</li>
+          <li><strong>Any other form of professional advice</strong></li>
+        </ul>
+
+        <h4 class="fw-bold mt-4">3. External Links</h4>
+        <p>This Site contains links to external websites, including the original articles that our aggregated headlines are sourced from. ApolloNews has no control over the nature, content, or availability of those sites. The inclusion of any link does not imply endorsement, recommendation, or approval of the linked website, its operators, or its content.</p>
+
+        <h4 class="fw-bold mt-4">4. Opinions &amp; Editorial Content</h4>
+        <p>Original blog posts and editorial articles on ApolloNews represent the views of the individual authors at the time of writing and do not necessarily represent the official position of ApolloNews on any matter. Editorial content should be read as opinion and analysis, not as verified fact.</p>
+
+        <h4 class="fw-bold mt-4">5. No Warranty</h4>
+        <p>ApolloNews is provided on an "as is" basis. We make no representations or warranties, express or implied, as to the operation of the Site, the accuracy of information, or the results from the use of any content on this Site. We expressly disclaim all warranties to the fullest extent permitted by applicable law.</p>
+
+        <h4 class="fw-bold mt-4">6. Limitation of Liability</h4>
+        <p>In no event shall ApolloNews, its operators, or affiliates be liable for any loss, damage, or injury of whatsoever nature arising from reliance on information published on this Site, whether or not caused by breach of contract, tort, negligence, or otherwise.</p>
+
+        <h4 class="fw-bold mt-4">7. Changes</h4>
+        <p>This disclaimer may be revised at any time without notice. Continued use of the Site constitutes acceptance of any revised disclaimer.</p>
+
+        <h4 class="fw-bold mt-4">8. Contact</h4>
+        <p>If you have concerns about any content on this Site, please contact us via our <a href="/contact">Contact page</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

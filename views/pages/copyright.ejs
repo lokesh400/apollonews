@@ -1,0 +1,58 @@
+<%- include('../partials/header') %>
+
+<div class="row g-4">
+  <div class="col-lg-8 mx-auto">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/">Home</a></li><li class="breadcrumb-item active">Copyright Notice</li></ol>
+    </nav>
+
+    <div class="card border-0 shadow-sm p-4 p-md-5">
+      <div class="d-flex align-items-center gap-3 mb-4">
+        <span style="background:var(--gradient);width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="bi bi-c-circle-fill text-white fs-5"></i>
+        </span>
+        <div>
+          <h1 class="h3 fw-bold mb-0">Copyright Notice</h1>
+          <p class="text-muted small mb-0">Last updated: January 2025</p>
+        </div>
+      </div>
+
+      <div class="legal-content">
+        <p class="lead">&copy; <%= new Date().getFullYear() %> ApolloNews. All rights reserved.</p>
+
+        <h4 class="fw-bold mt-4">Original Content</h4>
+        <p>All original content published on ApolloNews — including but not limited to editorial blog posts, feature articles, site design, logos, graphics, interface elements, and source code — is the exclusive intellectual property of ApolloNews and its contributors.</p>
+        <p>This content is protected by Indian copyright law (Copyright Act, 1957) and applicable international copyright treaties including the Berne Convention.</p>
+
+        <h4 class="fw-bold mt-4">Permitted Use</h4>
+        <p>You may:</p>
+        <ul>
+          <li>Share links to ApolloNews content on social media or other websites</li>
+          <li>Quote short excerpts (up to 100 words) for commentary, criticism, or news reporting, provided full attribution and a link to the original article is included</li>
+          <li>Print or save content for your own personal, non-commercial use</li>
+        </ul>
+
+        <h4 class="fw-bold mt-4">Prohibited Use</h4>
+        <p>You may NOT, without prior written permission from ApolloNews:</p>
+        <ul>
+          <li>Reproduce, republish, or redistribute ApolloNews original content in full</li>
+          <li>Use ApolloNews content for commercial purposes</li>
+          <li>Remove or alter copyright notices, watermarks, or attribution information</li>
+          <li>Scrape, mirror, or create derivative works based on ApolloNews content</li>
+          <li>Use the ApolloNews name, logo, or branding in any way that implies affiliation or endorsement</li>
+        </ul>
+
+        <h4 class="fw-bold mt-4">Aggregated Third-Party Content</h4>
+        <p>News articles aggregated from third-party sources are the copyright of their respective publishers. ApolloNews displays only brief summaries and links to original sources. If you are a rights holder and wish to have content removed, please review our <a href="/dmca">DMCA Policy</a>.</p>
+
+        <h4 class="fw-bold mt-4">Trademark</h4>
+        <p>The name "ApolloNews" and the ApolloNews logo are trademarks of ApolloNews. Unauthorised use of these trademarks is prohibited.</p>
+
+        <h4 class="fw-bold mt-4">Permission Requests</h4>
+        <p>To request permission for uses not covered above, please contact us via our <a href="/contact">Contact page</a> with the subject "Copyright Permission Request" and a description of the intended use.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

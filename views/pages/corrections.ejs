@@ -1,0 +1,79 @@
+<%- include('../partials/header') %>
+
+<div class="row g-4">
+  <div class="col-lg-8 mx-auto">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/">Home</a></li><li class="breadcrumb-item active">Corrections Policy</li></ol>
+    </nav>
+
+    <div class="card border-0 shadow-sm p-4 p-md-5">
+      <div class="d-flex align-items-center gap-3 mb-4">
+        <span style="background:var(--gradient);width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="bi bi-pencil-fill text-white fs-5"></i>
+        </span>
+        <div>
+          <h1 class="h3 fw-bold mb-0">Corrections Policy</h1>
+          <p class="text-muted small mb-0">Last updated: January 2025</p>
+        </div>
+      </div>
+
+      <div class="legal-content">
+        <p class="lead">ApolloNews is committed to accuracy. When we make errors, we correct them promptly, transparently, and without concealment.</p>
+
+        <h4 class="fw-bold mt-4">Our Principles</h4>
+        <ul>
+          <li>Corrections are made as quickly as possible after an error is confirmed</li>
+          <li>Corrections are prominently noted on the original article</li>
+          <li>We do not silently delete or rewrite articles to hide errors</li>
+          <li>We acknowledge corrections clearly and explain what was wrong</li>
+          <li>The original erroneous content is noted in the correction for context</li>
+        </ul>
+
+        <h4 class="fw-bold mt-4">Types of Corrections</h4>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm mt-3">
+            <thead class="table-dark">
+              <tr><th>Type</th><th>Description</th><th>How We Handle It</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Minor correction</strong></td>
+                <td>Typo, grammatical error, minor date or name error</td>
+                <td>Silently corrected; note added at article bottom</td>
+              </tr>
+              <tr>
+                <td><strong>Factual correction</strong></td>
+                <td>Incorrect statistic, misattributed quote, wrong date/place</td>
+                <td>Correction note at top of article; old text struck through or noted</td>
+              </tr>
+              <tr>
+                <td><strong>Significant correction</strong></td>
+                <td>Material error affecting meaning or fairness of article</td>
+                <td>Prominent correction label; editor's note explaining the error and context</td>
+              </tr>
+              <tr>
+                <td><strong>Retraction</strong></td>
+                <td>Article found to be fundamentally false or published in error</td>
+                <td>Article removed and replaced with retraction notice explaining what occurred</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 class="fw-bold mt-4">How to Request a Correction</h4>
+        <p>If you have identified an error in any ApolloNews article, please contact us via our <a href="/contact">Contact page</a> with:</p>
+        <ul>
+          <li>The URL of the article containing the error</li>
+          <li>A description of the specific error</li>
+          <li>The correct information, with supporting source(s) if possible</li>
+        </ul>
+        <p>We will investigate and respond within <strong>5 working days</strong>. We are grateful to readers who help us maintain accuracy.</p>
+
+        <h4 class="fw-bold mt-4">Aggregated Content</h4>
+        <p>For errors in aggregated third-party articles, we are unable to correct the original content as it resides on external websites. We will remove or annotate the aggregated listing on our Site and direct you to the original publisher for formal corrections.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

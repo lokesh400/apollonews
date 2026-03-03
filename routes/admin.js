@@ -1,37 +1,36 @@
-const express  = require('express');
-const router   = express.Router();
-const slugify  = require('slugify');
-const Blog     = require('../models/Blog');
-const Article  = require('../models/Article');
+const express   = require('express');
+const router    = express.Router();
+const passport  = require('passport');
+const slugify   = require('slugify');
+const Blog      = require('../models/Blog');
+const Article   = require('../models/Article');
 const newsFetcher = require('../services/newsFetcher');
 
 // ─── Auth Middleware ──────────────────────────────────────────────────────────
 function requireAdmin(req, res, next) {
-  if (req.session && req.session.isAdmin) return next();
+  if (req.isAuthenticated()) return next();
   res.redirect('/admin/login');
 }
 
 // ─── Login ────────────────────────────────────────────────────────────────────
 router.get('/login', (req, res) => {
-  if (req.session.isAdmin) return res.redirect('/admin');
-  res.render('admin/login', { title: 'Admin Login', error: null });
+  if (req.isAuthenticated()) return res.redirect('/admin');
+  const error = req.query.error ? 'Invalid username or password.' : null;
+  res.render('admin/login', { title: 'Admin Login', error });
 });
 
-router.post('/login', (req, res) => {
-  const { username, password } = req.body;
-  if (
-    username === (process.env.ADMIN_USERNAME || 'admin') &&
-    password === (process.env.ADMIN_PASSWORD || 'admin123')
-  ) {
-    req.session.isAdmin = true;
-    return res.redirect('/admin');
-  }
-  res.render('admin/login', { title: 'Admin Login', error: 'Invalid credentials' });
-});
+router.post('/login',
+  passport.authenticate('local', {
+    failureRedirect: '/admin/login?error=1',
+    successRedirect: '/admin',
+  })
+);
 
-router.post('/logout', (req, res) => {
-  req.session.destroy();
-  res.redirect('/admin/login');
+router.post('/logout', (req, res, next) => {
+  req.logout(err => {
+    if (err) return next(err);
+    res.redirect('/admin/login');
+  });
 });
 
 // ─── Dashboard ────────────────────────────────────────────────────────────────

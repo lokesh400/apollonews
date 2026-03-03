@@ -1,0 +1,113 @@
+<%- include('../partials/header') %>
+
+<div class="row g-4">
+  <div class="col-lg-10 mx-auto">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/">Home</a></li><li class="breadcrumb-item active">Sitemap</li></ol>
+    </nav>
+
+    <h1 class="h3 fw-bold mb-4"><i class="bi bi-map me-2" style="color:var(--primary);"></i>Sitemap</h1>
+
+    <div class="row g-4">
+
+      <!-- Main Pages -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-header fw-bold" style="background:var(--secondary);color:#fff;">
+            <i class="bi bi-house-fill me-2"></i>Main Pages
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="/" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>Home</a></li>
+            <li class="list-group-item"><a href="/blog" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>Blog</a></li>
+            <li class="list-group-item"><a href="/search" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>Search</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- News Categories -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-header fw-bold" style="background:var(--primary);color:#fff;">
+            <i class="bi bi-newspaper me-2"></i>News Categories
+          </div>
+          <ul class="list-group list-group-flush">
+            <% categories.forEach(cat => { %>
+            <li class="list-group-item">
+              <a href="/news/<%= cat.slug %>" class="text-decoration-none">
+                <i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i><%= cat.icon %> <%= cat.label %>
+              </a>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Legal & Info -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-header fw-bold" style="background:var(--accent2);color:#fff;">
+            <i class="bi bi-shield-fill me-2"></i>Legal &amp; Info
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="/about" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>About Us</a></li>
+            <li class="list-group-item"><a href="/contact" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>Contact Us</a></li>
+            <li class="list-group-item"><a href="/advertise" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>Advertise</a></li>
+            <li class="list-group-item"><a href="/privacy-policy" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>Privacy Policy</a></li>
+            <li class="list-group-item"><a href="/terms" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>Terms of Service</a></li>
+            <li class="list-group-item"><a href="/disclaimer" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>Disclaimer</a></li>
+            <li class="list-group-item"><a href="/dmca" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>DMCA Policy</a></li>
+            <li class="list-group-item"><a href="/cookie-policy" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>Cookie Policy</a></li>
+            <li class="list-group-item"><a href="/copyright" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>Copyright Notice</a></li>
+            <li class="list-group-item"><a href="/editorial-policy" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>Editorial Policy</a></li>
+            <li class="list-group-item"><a href="/fact-check" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>Fact Check Policy</a></li>
+            <li class="list-group-item"><a href="/corrections" class="text-decoration-none"><i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i>Corrections Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Latest Blog Posts -->
+      <% if (blogs && blogs.length) { %>
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header fw-bold" style="background:var(--secondary);color:#fff;">
+            <i class="bi bi-pencil-square me-2"></i>Blog Posts
+          </div>
+          <ul class="list-group list-group-flush">
+            <% blogs.forEach(b => { %>
+            <li class="list-group-item" style="font-size:.875rem;">
+              <a href="/blog/<%= b.slug %>" class="text-decoration-none">
+                <i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.7rem;"></i><%= b.title.substring(0,70) %><%= b.title.length > 70 ? '…' : '' %>
+              </a>
+              <small class="d-block text-muted" style="font-size:.75rem;"><%= new Date(b.createdAt).toDateString() %></small>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+      <% } %>
+
+      <!-- Latest News Articles -->
+      <% if (articles && articles.length) { %>
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header fw-bold" style="background:var(--primary);color:#fff;">
+            <i class="bi bi-newspaper me-2"></i>Recent Articles (latest 200)
+          </div>
+          <ul class="list-group list-group-flush" style="max-height:400px;overflow-y:auto;">
+            <% articles.forEach(a => { %>
+            <li class="list-group-item" style="font-size:.8rem;">
+              <a href="/news/<%= a.category %>/<%= a.slug %>" class="text-decoration-none">
+                <i class="bi bi-chevron-right me-1" style="color:var(--primary);font-size:.65rem;"></i><%= a.title.substring(0,80) %><%= a.title.length > 80 ? '…' : '' %>
+              </a>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+      <% } %>
+
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

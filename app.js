@@ -4,8 +4,8 @@ const mongoose   = require('mongoose');
 const session    = require('express-session');
 const MongoStore = require('connect-mongo');
 const passport   = require('passport');
-const morgan     = require('morgan');
-const helmet     = require('helmet');
+// const morgan     = require('morgan');
+// const helmet     = require('helmet');
 const methodOverride = require('method-override');
 const path       = require('path');
 const cron       = require('node-cron');
@@ -33,13 +33,13 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // ─── Middleware ───────────────────────────────────────────────────────────────
-app.use(helmet({
-  contentSecurityPolicy: false,  // allow inline scripts / adsense
-}));
+// app.use(helmet({
+//   contentSecurityPolicy: false,  // allow inline scripts / adsense
+// }));
 // Skip logging for static file requests (images, css, js) to keep terminal clean
-app.use(morgan('dev', {
-  skip: (req) => req.url.startsWith('/images/') || req.url.startsWith('/css/') || req.url.startsWith('/js/')
-}));
+// app.use(morgan('dev', {
+//   skip: (req) => req.url.startsWith('/images/') || req.url.startsWith('/css/') || req.url.startsWith('/js/')
+// }));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

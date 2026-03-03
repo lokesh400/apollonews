@@ -42,8 +42,9 @@
     <% } %>
 
     <!-- Category Sections -->
+    <% let catCount = 0; %>
     <% categories.forEach(cat => { %>
-    <% if (categoryNews[cat.slug] && categoryNews[cat.slug].length) { %>
+    <% if (categoryNews[cat.slug] && categoryNews[cat.slug].length) { catCount++; %>
     <section class="mb-5">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="fw-bold category-heading">
@@ -63,7 +64,9 @@
         <% }) %>
       </div>
     </section>
-    <!-- Mid Ad every 2 categories -->
+    <% if (catCount % 2 === 0) { %>
+    <%- include('partials/ad-banner', { id: 'ad-mid-' + catCount, label: 'Advertisement', size: '728x90' }) %>
+    <% } %>
     <% } %>
     <% }) %>
 

@@ -18,7 +18,11 @@
       <div class="col-sm-6 col-md-4">
         <%- include('partials/article-card', { article }) %>
       </div>
-
+      <% if ((idx + 1) % 6 === 0) { %>
+      </div>
+      <%- include('partials/ad-banner', { id: 'ad-cat-' + (idx + 1), label: 'Advertisement', size: '728x90' }) %>
+      <div class="row g-3">
+      <% } %>
       <% }) %>
     </div>
 

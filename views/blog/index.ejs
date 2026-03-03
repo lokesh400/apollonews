@@ -32,8 +32,11 @@
           </div>
         </div>
       </div>
-
-
+      <% if ((idx + 1) % 4 === 0) { %>
+      </div>
+      <%- include('../partials/ad-banner', { id: 'ad-blog-list-' + (idx + 1), label: 'Advertisement', size: '728x90' }) %>
+      <div class="row g-4">
+      <% } %>
       <% }) %>
     </div>
 
